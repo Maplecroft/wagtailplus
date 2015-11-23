@@ -159,7 +159,6 @@ class Entry(models.Model):
     created         = models.DateTimeField(_(u'Created'))
     modified        = models.DateTimeField(_(u'Modified'))
     title           = models.CharField(_(u'Title'), max_length=255, blank=True)
-    url             = models.CharField(_(u'URL'), max_length=255, blank=True)
     live            = models.BooleanField(_(u'Live?'), default=True)
     objects         = EntryManager()
 
@@ -167,6 +166,12 @@ class Entry(models.Model):
         verbose_name        = _(u'Entry')
         verbose_name_plural = _(u'Entries')
         ordering            = ('title',)
+
+    @cached_property
+    def url(self):
+        """Returns the URL of the linked object"""
+        default_url = getattr(self.content_object, 'get_absolute_url', '')
+        return getattr(self.content_object, 'url', default_url)
 
     @cached_property
     def related(self):
