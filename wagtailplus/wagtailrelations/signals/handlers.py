@@ -71,9 +71,7 @@ def update_entry_attributes(sender, instance, **kwargs):
 
     entry = Entry.objects.get_for_model(instance)[0]
 
-    default_url = getattr(instance, 'get_absolute_url', '')
     entry.title = getattr(instance, 'title', str(instance))
-    entry.url   = getattr(instance, 'url', default_url)
     entry.live  = bool(getattr(instance, 'live', True))
 
     entry.save()
