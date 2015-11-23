@@ -11,10 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='category',
-            options={'ordering': ('path',), 'verbose_name': 'Category', 'verbose_name_plural': 'Categories'},
-        ),
         migrations.RemoveField(
             model_name='entry',
             name='url',
