@@ -14,7 +14,10 @@
             <tbody>
                 {% for content in self.instance.related_with_scores|slice:":20" %}
                     <tr>
-                        <td>{% blocktrans with title_str=content.0 %}{{ title_str }}{% endblocktrans %}</td>
+                        <td>
+                            <a href="{% url wagtailadmin_pages:edit content.0.object_id %}"
+                                >{% blocktrans with title_str=content.0 %}{{ title_str }}{% endblocktrans %}</a>
+                        </td>
                         <td style="text-align: right;">{{ content.1|floatformat:"7" }}</td>
                     </tr>
                 {% endfor %}
