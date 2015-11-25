@@ -77,7 +77,6 @@ class BaseTestIndexView(TestCase, WagtailTestUtils):
             '{0}/index.html'.format(self.template_dir)
         )
         self.assertEqual(response.context['page_obj'].number, 2)
-        self.assertContains(response, 'Page 2 of 3')
 
     def test_pagination_invalid(self):
         # Create model class instances.
@@ -392,7 +391,6 @@ class BaseTestChooserView(TestCase, WagtailTestUtils):
             '{0}/results.html'.format(self.template_dir)
         )
         self.assertEqual(response.context['page_obj'].number, 2)
-        self.assertContains(response, 'Page 2 of 3')
 
     def test_pagination_invalid(self):
         # Create model class instances.

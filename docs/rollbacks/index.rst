@@ -9,9 +9,10 @@ may take are based on existing user page permissions.
 
 Module Installation
 -------------------
-Simply add the module to ``settings.INSTALLED_APPS``::
+This module requires the ``wagtail.contrib.settings`` module. Both must be added to ``settings.INSTALLED_APPS``::
 
     INSTALLED_APPS = (
+        'wagtail.contrib.settings',
         ...
         'wagtailplus.wagtailrollbacks',
         ...
