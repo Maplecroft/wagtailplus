@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Contains model unit tests.
 """
+from __future__ import unicode_literals
 from django.test import TestCase
 
 from wagtail.wagtailadmin.edit_handlers import ObjectList
@@ -23,7 +26,7 @@ class TestEmailLink(TestCase):
         self.model = Link.objects.create(
             link_type   = Link.LINK_TYPE_EMAIL,
             title       = 'Test Email Address',
-            email       = 'somebody@something.com'
+            email       = 'somébody@something.com'
         )
 
     def test_url_property(self):
@@ -39,6 +42,12 @@ class TestEmailLink(TestCase):
         self.assertTrue(
             self.model in EmailLink.objects.all()
         )
+
+    def test_unicode_email_addres(self):
+        try:
+            str(self.model)
+        except UnicodeDecodeError:
+            raise AssertionError("Failed to `str` the unicode email address")
 
 class TestExternalLink(TestCase):
     def setUp(self):

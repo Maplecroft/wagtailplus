@@ -1,6 +1,8 @@
 """
 Contains application model definitions.
 """
+from __future__ import unicode_literals
+
 import decimal
 import inspect
 import six
