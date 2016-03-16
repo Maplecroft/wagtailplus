@@ -8,10 +8,6 @@ from django.contrib.admin.apps import SimpleAdminConfig
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
-from wagtailplus.utils.edit_handlers import add_panel_to_edit_handler
-
-from wagtailplus.wagtailrollbacks.edit_handlers import HistoryPanel
-
 
 logger = logging.getLogger('wagtail.core')
 
@@ -40,6 +36,9 @@ class WagtailRollbacksAppConfig(SimpleAdminConfig):
         """
         Adds rollback panel to applicable model class's edit handlers.
         """
+        from wagtailplus.utils.edit_handlers import add_panel_to_edit_handler
+        from wagtailplus.wagtailrollbacks.edit_handlers import HistoryPanel
+
         for model in self.applicable_models:
             add_panel_to_edit_handler(model, HistoryPanel, _(u'History'))
 

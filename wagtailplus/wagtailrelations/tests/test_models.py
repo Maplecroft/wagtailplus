@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Contains model unit tests.
 """
+from __future__ import unicode_literals
+
 import decimal
 
 from django.test import TestCase
@@ -21,6 +25,7 @@ class TestCategory(TestCase):
         # Create some categories.
         self.category       = Category.add_root(name='category')
         self.sub_category   = self.category.add_child(name='sub category')
+        self.unicode_sub    = self.category.add_child(name='sub catégory')
 
         # Get the root page.
         self.root_page = Page.objects.get(id=2)
@@ -65,6 +70,13 @@ class TestCategory(TestCase):
     def test_set_tag(self):
         self.sub_category.set_tag()
         self.assertEqual(type(self.sub_category.tag), Tag)
+
+    def test_unicode_category_name(self):
+        try:
+            str(self.unicode_sub)
+        except UnicodeDecodeError:
+            raise AssertionError("Failed to `str` the unicode category name")
+
 
 class TestEntity(TestCase):
     def setUp(self):

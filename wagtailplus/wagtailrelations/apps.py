@@ -7,9 +7,6 @@ from django.db import IntegrityError
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
-from wagtailplus.utils.edit_handlers import add_panel_to_edit_handler
-from wagtailplus.wagtailrelations.edit_handlers import RelatedPanel
-
 
 class WagtailRelationsAppConfig(SimpleAdminConfig):
     name                = 'wagtailplus.wagtailrelations'
@@ -41,6 +38,9 @@ class WagtailRelationsAppConfig(SimpleAdminConfig):
         Add edit handler that includes "related" panels to applicable
         model classes that don't explicitly define their own edit handler.
         """
+        from wagtailplus.utils.edit_handlers import add_panel_to_edit_handler
+        from wagtailplus.wagtailrelations.edit_handlers import RelatedPanel
+
         for model in self.applicable_models:
             add_panel_to_edit_handler(model, RelatedPanel, _(u'Related'))
 
@@ -107,10 +107,8 @@ class WagtailRelationsAppConfig(SimpleAdminConfig):
         """
         Finalizes application configuration.
         """
-        #noinspection PyUnresolvedReferences
         import wagtailplus.wagtailrelations.signals.handlers
 
         self.add_relationship_panels()
         self.add_relationship_methods()
-
         super(WagtailRelationsAppConfig, self).ready()

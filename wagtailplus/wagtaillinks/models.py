@@ -121,6 +121,9 @@ class EmailLinkManager(models.Manager):
         qs = LinkQuerySet(model=self.model)
         return qs.filter(link_type=Link.LINK_TYPE_EMAIL)
 
+    def search(self, query_string, fields=None, operator=None, order_by_relevance=True, backend='default'):
+        return self.get_queryset().search(query_string, fields, operator, order_by_relevance, backend)
+
 class EmailLink(Link):
     class Meta(object):
         proxy = True
@@ -139,6 +142,9 @@ class ExternalLinkManager(models.Manager):
     def get_queryset(self):
         qs = LinkQuerySet(model=self.model)
         return qs.filter(link_type=Link.LINK_TYPE_EXTERNAL)
+
+    def search(self, query_string, fields=None, operator=None, order_by_relevance=True, backend='default'):
+        return self.get_queryset().search(query_string, fields, operator, order_by_relevance, backend)
 
 class ExternalLink(Link):
     class Meta(object):

@@ -7,10 +7,9 @@ script:
   - tox
 
 env:
-  - TOXENV=py27-django17
-  - TOXENV=py27-django18
-  - TOXENV=py34-django17
-  - TOXENV=py34-django18
   - TOXENV=py27-django18-coverage
+  - TOXENV=py27-django19-coverage
+  - TOXENV=py34-django18-coverage
+  - TOXENV=py34-django19-coverage
 
 after_success: coveralls

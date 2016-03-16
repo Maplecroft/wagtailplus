@@ -107,7 +107,7 @@ class IndexView(generic.ListView):
 
         if search_form.is_valid():
             query_str   = search_form.cleaned_data.get('q', '').strip()
-            queryset    = self.model.search(query_str)
+            queryset    = self.model.objects.search(query_str)
 
         return queryset
 
