@@ -21,7 +21,7 @@ except ImportError:
     pass
 
 install_requires = [
-    "wagtail>=1.2",
+    "wagtail>=1.4",
 ]
 
 setup(

@@ -26,6 +26,7 @@ class TestPageRevisionsView(TestCase, WagtailTestUtils):
         self.child_page = SimplePage(
             title   = 'Test Page',
             slug    = 'test-page',
+            content = 'Test page content',
         )
         self.root_page.add_child(instance=self.child_page)
 
@@ -105,6 +106,7 @@ class TestRevisionPreviewView(TestCase, WagtailTestUtils):
         self.child_page = SimplePage(
             title   = 'Test Page',
             slug    = 'test-page',
+            content = 'Test page content',
         )
         self.root_page.add_child(instance=self.child_page)
 
@@ -147,6 +149,7 @@ class TestConfirmPageReversionView(TestCase, WagtailTestUtils):
         self.child_page = SimplePage(
             title   = 'Test Page',
             slug    = 'test-page',
+            content = 'Test page content',
         )
         self.root_page.add_child(instance=self.child_page)
 
